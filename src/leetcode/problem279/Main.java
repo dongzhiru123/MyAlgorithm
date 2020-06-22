@@ -1,5 +1,6 @@
 package leetcode.problem279;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,36 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-
+        Main main = new Main();
+        System.out.println(main.numSquares(12));
+    }
+    public int numSquares(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        List<Integer> listForN = getListForN(n);
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            int min = Integer.MAX_VALUE;
+            for (int temp : listForN) {
+                if (temp > i) {
+                    break;
+                }
+                min = Math.min(min, dp[i - temp] + 1);
+            }
+            dp[i] = min;
+        }
+        return dp[n];
+    }
+    private List<Integer> getListForN(int n) {
+        List<Integer> result = new ArrayList<>();
+        int temp = 1, flag = 3;
+        while (temp <= n) {
+            result.add(temp);
+            temp += flag;
+            flag += 2;
+        }
+        return result;
     }
 }
