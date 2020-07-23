@@ -13,6 +13,7 @@ package jianzhioffer.problem64;
  *
  * 限制：
  * 1 <= n <= 10000
+ *
  */
 public class Main {
     public static void main(String[] args) {
